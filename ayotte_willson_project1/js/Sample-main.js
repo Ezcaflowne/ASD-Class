@@ -54,14 +54,14 @@ var getData = function(){
             makeList.append(makeLi);
             var key = localStorage.key(i);
             var value = localStorage.getItem(key);
-            var item = JSON.parse(localStorage.getItem(key));
+            var obj = JSON.parse(localStorage.getItem(key));
             var makeSubList = $('<ul>');
             makeLi.append(makeSubList);
-            getImage(item.aptType[1], makeSubList);
-        for (var n in item) {
+            getImage(obj.aptType[1], makeSubList);
+        for (var n in obj) {
             var makeSubLi = $('<li>')
             makeSubList.append(makeSubLi);
-            var optSubText = $('<p>' + item[n][0]+" "+item[n][1] + '</p>').appendTo(makeLi);
+            var optSubText = $('<p>' + obj[n][0]+" "+obj[n][1] + '</p>').appendTo(makeLi);
             makeSubLi.html(optSubText);
             makeSubList.append(linksLi);
         }
@@ -92,8 +92,10 @@ var getImage = function (catName, makeSubList) {
 
 var editItem = function () {
         // Grab the data from our local storage.
-        var value = localStorage.getItem(this.key);
-        var item = jQuery.parseJSON(value);
+        var key = $(this).attr('key');
+        var item = JSON.parse(localStorage.getItem(key));
+        console.log(key);
+        console.log(localStorage)
         var submitButton = $('#submit')
         // Show the form
 
@@ -109,14 +111,15 @@ var editItem = function () {
         $('#comments').val(item.comments[1]);
 
         // Remove the initial listener from the input 'save contact' button.
-        //submitButton.off("click", storeData);
+        submitButton.off('click');
         // Change Submit Button value to Confirm Button
-        $('#submit').val() = "Confirm Changes";
+        $('#submit').val('Confirm Changes');
         var editSubmit = $('#submit');
         // Save the key value established in this function as a property of the editSubmit event
         // so we can use that value when we save the data we edited.
         ////editSubmit.addEventListener("click", validate);
-        editSubmit = this.key;
+        window.location.reload();
+        editSubmit.key = this.key;
 };
 
 var makeItemLinks = function (key, linksLi) {
@@ -125,7 +128,7 @@ var makeItemLinks = function (key, linksLi) {
                         .attr('data-role','button')
                         .text('Edit Apartment')
                         .css('padding-top','10px')
-                        .attr('key','key')
+                        .attr('key',key)
                         .on('click', editItem)
                         editLink.key = key;
                         editLink.appendTo(linksLi);
@@ -134,13 +137,13 @@ var makeItemLinks = function (key, linksLi) {
 
     // Add delete single item Link
         var deleteLink = $('<li>')
-                            .attr('data-role','button')
-                            .text('Delete Apartment')
-                            .css('padding-top','10px')
-                            .attr('key','key')
-                            .on('click', deleteItem)
-                            deleteLink.key = key;
-                            deleteLink.appendTo(linksLi);
+                        .attr('data-role','button')
+                        .text('Delete Apartment')
+                        .css('padding-top','10px')
+                        .attr('key', key)
+                        .on('click', deleteItem)
+                        deleteLink.key = key;
+                        deleteLink.appendTo(linksLi);
         ;
 };      
 
@@ -148,7 +151,7 @@ var makeItemLinks = function (key, linksLi) {
 var storeData = function (key){
         // If there is not key this means this is a brand new item and need a new key.
         if(!key){
-            var id              = Math.floor(Math.random()*10000001);    
+            var id = Math.floor(Math.random()*10000001);    
         } else {
             // Set the id to the existing key we are editing so that it will save over the data.
             // The key is the same key thats been passed along from the editSubmit event handler
@@ -173,6 +176,7 @@ var storeData = function (key){
         // Save data into localStorage: Use Stringify to convert our object to a string.
         localStorage.setItem(id, JSON.stringify(item));
         alert("Apartment is Saved!");
+        // $('#showData').listview('refresh');
         window.location.reload();
 }; 
 
