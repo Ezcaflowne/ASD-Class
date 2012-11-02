@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Apartments>
+
+	<item>
+	
+		<aptType> 		Type: Vacant Available</aptType>
+		<aptNum>  		Apartment Number: 1079</aptNum>  
+		<aptSize> 		Apartment Size: 2x2</aptSize> 
+		<vacDate> 		Vacate: 8/19/2012</vacDate> 
+		<rdyDate> 		Ready: 8/29/2012</rdyDate> 
+		<isWhiteLock> 	Whitelock? Yes</isWhiteLock>
+		<isPower> 		Power? Yes</isPower> 
+		<condition> 	Condition: 20</condition>
+		<comments>		Additional Comments: Needs new carpet and vinyl installed.</comments>	
+	</item>
+	<item>
+		<aptType> 		Type: Vacant Rented</aptType>
+		<aptNum>  		Apartment Number: 2121</aptNum>
+		<aptSize> 		Apartment Size: 2x2</aptSize>
+		<vacDate> 		Vacate: 8/9/2012</vacDate>
+		<rdyDate> 		Ready: 8/19/2012</rdyDate>
+		<isWhiteLock> 	Whitelock? Yes</isWhiteLock>
+		<isPower> 		Power? Yes</isPower>
+		<condition> 	Condition: 100</condition>
+		<comments>		Additional Comments: Countertops have been resurfaced.</comments>
+	</item>
+	<item>
+		<aptType> 		Type: Notice Available</aptType>
+		<aptNum>  		Apartment Number:" 003</aptNum>
+		<aptSize> 		Apartment Size: 1x1</aptSize>
+		<vacDate> 		Vacate: 8/27/2012</vacDate>
+		<rdyDate> 		Ready: </rdyDate>
+		<isWhiteLock> 	Whitelock? </isWhiteLock>
+		<isPower> 		Power? </isPower> 
+		<condition> 	Condition: 50</condition>
+		<comments>		Additional Comments: Resident would like apartment walked prior to move-out date.</comments>
+	</item>
+	<item>
+		<aptType> 		Type: Vacant Available</aptType>
+		<aptNum>  		Apartment Number: 2003</aptNum>
+		<aptSize> 		Apartment Size: 1x1</aptSize>
+		<vacDate> 		Vacate: 9/1/2012</vacDate>
+		<rdyDate> 		Ready: 9/8/2012</rdyDate>
+		<isWhiteLock> 	Whitelock? Yes</isWhiteLock>
+		<isPower> 		Power? Yes</isPower>
+		<condition> 	Condition: 50</condition>
+		<comments>		Additional Comments: Needs countertops resurfaced.</comments>
+	</item>
+	<item>
+		<aptType> 		Type: Notice Available</aptType>
+		<aptNum>  		Apartment Number: 1104</aptNum>
+		<aptSize> 		Apartment Size: 1x1</aptSize>
+		<vacDate> 		Vacate: 9/28/2012</vacDate>
+		<rdyDate> 		Ready: </rdyDate>
+		<isWhiteLock> 	Whitelock? </isWhiteLock>
+		<isPower> 		Power? </isPower>
+		<condition> 	Condition: 50</condition>
+		<comments>		Additional Comments: </comments>
+	</item>
+</Apartments>

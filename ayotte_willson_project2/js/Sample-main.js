@@ -1,6 +1,135 @@
 $('#home').on('pageinit', function(){
 	//code needed for home page goes here
 });	
+
+
+// Calling external Saved Data
+// $.ajax({
+//     url: "xhr/data.json",
+//     type: "GET",
+//     dataType: "json",
+//     success: function(result){
+//         console.log(result, "Hurray it works!!");
+//         // here you will add code to display in the DOM
+//     },
+//     error: function(result){
+//         console.log(result, "Did not Work");
+//     }
+// });
+
+$( '#remoteData' ).on('pageinit', function(){
+
+    // Calling data.json
+    $( '#jsonButton' ).on( 'click', function () {
+        $('#viewData').empty();
+        $.ajax( {
+            url: 'xhr/data.json',
+            type: 'GET',
+            dataType: 'json',
+            success:function ( result ) {
+                console.log(result, "It Works");
+                for ( var i = 0, len = result.apartments.length; i < len; i++ ) {
+                    var item = result.apartments[i];
+                    //console.log(item);
+                    $( ' ' + 
+                    '<div class="apartment">'       +
+                    '<p>'  + item.aptType[0]        + " " + item.aptType[1] +
+                    '<br>' + item.aptNum[0]         + " " + item.aptNum[1] + 
+                    '<br>' + item.aptSize[0]        + " " + item.aptSize[1] + 
+                    '<br>' + item.vacDate[0]        + " " + item.vacDate[1] +
+                    '<br>' + item.rdyDate[0]        + " " + item.rdyDate[1] +
+                    '<br>' + item.isWhiteLock[0]    + " " + item.isWhiteLock[1] +
+                    '<br>' + item.isPower[0]        + " " + item.isPower[1] +
+                    '<br>' + item.condition[0]      + " " + item.condition[1] +
+                    '<br>' + item.comments[0]       + " " + item.comments[1] + '</p>' +
+                    '</div>'
+                    ).appendTo( '#viewData' );
+                }
+            },
+            error: function(result){
+            console.log(result, "Did not Work");
+            }
+        });
+    });
+    
+    // Calling data.xml
+    $( '#xmlButton' ).on( 'click', function() {
+        $('#viewData').empty();
+        $.ajax( {
+            url: 'xhr/data.xml',
+            type: 'GET',
+            dataType: 'xml',
+            success:function ( result ) {
+                console.log(result, "It Works!");
+                $(result).find('item').each(function(){
+                    var aptType     = $(this).find('aptType').text();
+                    var aptNum      = $(this).find('aptNum').text();
+                    var aptSize     = $(this).find('aptSize').text();
+                    var vacDate     = $(this).find('vacDate').text();
+                    var rdyDate     = $(this).find('rdyDate').text();
+                    var isWhiteLock = $(this).find('isWhiteLock').text();
+                    var isPower     = $(this).find('isPower').text();
+                    var condition   = $(this).find('condition').text();
+                    var comments    = $(this).find('comments').text();
+                    $(''+
+                        '<div class="xmlData">'+
+                            '<p>'+ aptType +
+                            '<br>'+ aptNum +
+                            '<br>'+ aptSize +
+                            '<br>'+ vacDate +
+                            '<br>'+ rdyDate + 
+                            '<br>'+ isWhiteLock +
+                            '<br>'+ isPower +
+                            '<br>'+ condition +
+                            '<br>'+ comments +'</p>'+
+                        '</div>'
+                    ).appendTo('#viewData');
+                });
+            },
+            error: function(result){
+            console.log(result, "Did not Work");
+            }
+        });
+    });
+
+    $( '#csvButton' ).on( 'click', function() {
+        $('#viewData').empty();
+        $.ajax( {
+            url: 'xhr/data.csv',
+            type: 'GET',
+            dataType: 'text',
+            success:function ( result ) {
+                console.log( "<<<It Works>>>", result);
+                var lines = result.split("\n");
+                //console.log(lines);
+                var dataRow = lines[0];
+                var dataCol = dataRow.split(",");
+                for (var lineNum = 1; lineNum < lines.length; lineNum++) {
+                    var row = lines[lineNum];
+                    var columns = row.split(",");
+                    //console.log(columns);
+                    $(''+
+                            '<div class="csvData">'+
+                                '<p>' + dataCol[0] + " " + columns[0] +
+                                '<br>'+ dataCol[1] + " " + columns[1] +
+                                '<br>'+ dataCol[2] + " " + columns[2] +
+                                '<br>'+ dataCol[3] + " " + columns[3] +
+                                '<br>'+ dataCol[4] + " " + columns[4] +
+                                '<br>'+ dataCol[5] + " " + columns[5] +
+                                '<br>'+ dataCol[6] + " " + columns[6] +
+                                '<br>'+ dataCol[7] + " " + columns[7] +
+                                '<br>'+ dataCol[8] + " " + columns[8] + '</p>' +
+                            '</div>'
+                        ).appendTo('#viewData');
+                }
+            },
+            error: function(result){
+            console.log(result, "Did not Work");
+            }
+        });
+    });
+
+});
 		
 $('#addItem').on('pageinit', function(){
     delete $.validator.methods.date;
@@ -28,7 +157,6 @@ $('#addItem').on('pageinit', function(){
 
     //any other code needed for addItem page goes here
 
-
 });
 
 //The functions below can go inside or outside the pageinit function for the page in which it is needed.
@@ -45,6 +173,7 @@ var getData = function(){
     alert("There are no Apartments saved in Local Storage so defualt data was added.");
     autoFillApartments();
     }
+        
     var makeList = $('<div>');
     $('#showData').append(makeList)
     for (var i = 0, len = localStorage.length; i < len; i++) {
@@ -68,18 +197,9 @@ var getData = function(){
         makeItemLinks(localStorage.key(i), linksLi);
     }
 
-    // var makeDiv = $('<div>').attr('items');
-    // var makeList = $('<ul>').appendTo(makeDiv);
-    // $('#showData').append(makeDiv);
-    // $('#items').css('display','block');
-    // for(var i=0, len=localStorage.length; i<len;i++){
-    //     var makeLi = $('<li>').append(makeDiv);
-    //     var linksLi = $('<li>');
-    //     var key = localStorage.key(i);
-    //     var value = localStorage.getItem(key);
-    // }
-
 };
+
+
 
 var getImage = function (catName, makeSubList) {
         var imageLi = $("<li>");
@@ -91,15 +211,12 @@ var getImage = function (catName, makeSubList) {
     };
 
 var editItem = function () {
-        // Grab the data from our local storage.
-        var key = $(this).attr('key');
-        var item = JSON.parse(localStorage.getItem(key));
-        console.log(key);
+       
+        var key = localStorage.getItem(this.key);
+        var item = JSON.parse(value);
+        console.log(value);
         console.log(localStorage)
-        var submitButton = $('#submit')
-        // Show the form
 
-        // popluate the form feilds with current localStorage values.
         $('#aptType').val(item.aptType[1]);
         $('#aptNum').val(item.aptNum[1]);
         $('#aptSize').val(item.aptSize[1]);
@@ -110,25 +227,18 @@ var editItem = function () {
         $('#condition').val(item.condition[1]);
         $('#comments').val(item.comments[1]);
 
-        // Remove the initial listener from the input 'save contact' button.
-        submitButton.off('click');
-        // Change Submit Button value to Confirm Button
-        $('#submit').val('Confirm Changes');
-        var editSubmit = $('#submit');
-        // Save the key value established in this function as a property of the editSubmit event
-        // so we can use that value when we save the data we edited.
-        ////editSubmit.addEventListener("click", validate);
-        window.location.reload();
-        editSubmit.key = this.key;
+        thiskey = this.key
+        $('submit').on('click', storeData(thiskey));
 };
 
 var makeItemLinks = function (key, linksLi) {
+
     // add edit single item link
-        var editLink = $('<li>')
+        var editLink = $('<n>')
                         .attr('data-role','button')
-                        .text('Edit Apartment')
+                        .html('Edit Apartment')
                         .css('padding-top','10px')
-                        .attr('key',key)
+                        .attr('this',key)
                         .on('click', editItem)
                         editLink.key = key;
                         editLink.appendTo(linksLi);
@@ -140,7 +250,7 @@ var makeItemLinks = function (key, linksLi) {
                         .attr('data-role','button')
                         .text('Delete Apartment')
                         .css('padding-top','10px')
-                        .attr('this', key)
+                        .attr('key', key)
                         .on('click', deleteItem)
                         deleteLink.key = key;
                         deleteLink.appendTo(linksLi);
@@ -159,10 +269,6 @@ var storeData = function (key){
             id = key;
         }
         
-        // Gather up all our form field values and stred in an object
-        // Object properties contain an array with the form label and input values.
-        // getCheckboxPower();
-        // getCheckboxWhite();
         var item                = {};
             item.aptType        = ["Apartment Type:", $("#aptType").val()];
             item.aptNum         = ["Apartment Number:", $("#aptNum").val()];
@@ -176,8 +282,8 @@ var storeData = function (key){
         // Save data into localStorage: Use Stringify to convert our object to a string.
         localStorage.setItem(id, JSON.stringify(item));
         alert("Apartment is Saved!");
-        $('#showData').listview('refresh');
-        //window.location.reload();
+        //$('#showData').listview('refresh');
+        window.location.reload();
 }; 
 
 console.log(localStorage);
@@ -212,28 +318,16 @@ var clearLocal = function(){
 };
 
     // REMOVED FOR WEEK TWO
-    //$( '#displayLink' ).on( 'click', getData );
+    $( '#displayLink' ).on( 'click', getData );
 
     $( '#clearLink'   ).on( 'click', clearLocal );
-    $( '#addNew'      ).on( 'click', '#addItem' )//.css('display','none');  FIX THIS SO IT TAKES ME BACK TO FORMPAGE
+    $( '#addNew'      ).on( 'click', '#addItem' );//.css('display','none');  FIX THIS SO IT TAKES ME BACK TO FORMPAGE
 
 // $('<li><a href="#">New Link</a></li>').appendTo('#nav');
 // $.mobile.changePage('#searchResult');
 
 
-// Calling external Saved Data
-$.ajax({
-    url: "xhr/data.json",
-    type: "GET",
-    dataType: "json",
-    success: function(result){
-        console.log(result, "Hurray it works!!");
-        // here you will add code to display in the DOM
-    },
-    error: function(result){
-        console.log(result, "Did not Work");
-    }
-});
+
 
 // Refresh listview
 // $('#myList').listview('refresh');

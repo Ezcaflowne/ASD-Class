@@ -37,8 +37,8 @@
 		<div id="hbgimg" data-role="content">
 			<center>
 				<p><a href="#addItem" id="additembutton" data-ajax="false" data-role="button" data-icon="arrow-r" data-iconpos="right">Add Apartment</a></p>
-				<p><a href="#aptData" id="aptData" data-ajax="true" data-role="button" data-icon="arrow-r" data-iconpos="right" data-theme="e">Show Apartment Data</a></p>
-				<p><a href="#load" id="loadData" data-ajax="true" data-role="button" data-icon="arrow-r" data-iconpos="right" data-theme="b">AJAX</a></p>
+				<p><a href="#aptData" data-role="button" data-inset="true" data-ajax="true" data-icon="arrow-r" data-iconpos="right" data-theme="e">Show Apartment Data</a></p>
+				<p><a href="#remoteData" data-role="button" data-inset="true" data-ajax="true" data-icon="arrow-r" data-iconpos="right" data-theme="b">AJAX</a></p>
 			</center>
 				<ul data-role="listview" data-inset="true" data-filter="true">
 					<li data-role="list-divider">Browse by Apartment</li>
@@ -287,27 +287,6 @@
 		</div>
 	</div><!-- END SUPERVISOR PAGE -->
 
-<!--------------------------------------- APARTMENT DATA PAGE ------------------------------------------>
-<div data-role="page" id="aptData" data-add-back-btn="true" data-theme="a">
-
-	<div data-role="header">
-		<h1>Saved Apartments</h1>
-    </div>
-
-    <div data-role="content">
-		<div data-role="fieldcontain" id="showData" class="formfield"></div>
-	</div>
-
-	<div data-role="fieldcontain" id="showData" class="formfield"></div>
-         <footer id="addFooter"><p id="footText">Navagation</p>    
-      	<div data-role="button" id="displayLink" data-inline="true" data-mini="true" data-theme="e">Display Apartments</div>
-   	  	<div data-role="button" id="clearLink"    data-inline="true" data-mini="true" data-theme="e">Clear Apartments</div>
-      	<div data-role="button" id="addNew" data-inline="true" data-mini="true" data-theme="e">Add New Apartment</div>
-      	</footer>
-
-</div><!-- END APARTMENT DATA PAGE -->
-
-
 
 <!--------------------------------------- ADD APARTMENT PAGE ------------------------------------------>
 <div data-role="page" id="addItem" data-theme="a">
@@ -424,23 +403,67 @@
 	</div>
 </div><!-- END ERROR PAGE -->
 
+
+<!--------------------------------------- APARTMENT DATA PAGE ------------------------------------------>
+<div data-role="page" id="aptData" data-add-back-btn="true" data-theme="a">
+
+	<div data-role="header">
+		<h1>Saved Apartments</h1>
+    </div>
+
+    <div data-role="content">
+		<div data-role="fieldcontain" id="showData" class="formfield"></div>
+	</div>
+
+         <p id="footText">Navagation</p> 
+         <div data-role="button" id="displayLink" data-inline="true" data-mini="true" data-theme="e">Display Apartments</div>   
+   	  	<div data-role="button" id="clearLink"    data-inline="true" data-mini="true" data-theme="e">Clear Apartments</div>
+      	<div data-role="button" id="addNew" data-inline="true" data-mini="true" data-theme="e">Add New Apartment</div>
+
+     <div data-role="footer" data-position="fixed">
+    	<div data-role="navbar">		
+    	<ul>
+			<li><a href="#gold">Home</a></li>
+			<li><a href="#supera">Super</a></li>
+			<li><a href="http://feeds.weatherbug.com/rss.aspx?zipcode=89142&feed=currtxt,fcsttxt&zcode=z4641">News</a></li>
+			<li><a href="#abouta">About</a></li>
+		</ul>
+		</div>
+	</div>
+
+</div><!-- END APARTMENT DATA PAGE -->
+
+
 <!------------------------------------- AJAX PAGE -------------------------------------->
-<div data-role="page" id="load" data-add-back-btn="true" data-theme="a">
+<div data-role="page" id="remoteData" data-add-back-btn="true" data-theme="a">
 
 	<div data-role="header">
 		<h1>Listview</h1>
     </div>
     
-    <div data-role="content">
-    	<form action="" id="apartmentForm">
-      		<nav id="dataFooter"><p id="dataText">Select Data Format</p>
-        	<div data-role="button" id="jsonData" data-mini="true" data-theme="b">Load JSON Data</div><br/>
-        	<div data-role="button" id="xml" data-mini="true" data-theme="b">Load XML Data</div><br/>
-       		<div data-role="button" id="wddx" data-mini="true" data-theme="b">Load WDDX Data</div><br/>
-       		</nav>
-       	</form>
-        	
-    </div>
+    <div data-role="content" id="remoteContent">
+    	<p id="dataText">Select Data Format</p>
+        <div data-role="button" id="jsonButton" data-inline="true" data-ajax="true" data-theme="b">Load JSON Data</div>
+        <div data-role="button" id="xmlButton" data-inline="true" data-theme="b">Load XML Data</div>
+       	<div data-role="button" id="csvButton" data-inline="true" data-theme="b">Load CSV Data</div>
+    
+    <div data-role="fieldcontain" id="viewData"></div>
+
+      	
+
+	</div>
+
+	<div data-role="footer" data-position="fixed">
+    		<div data-role="navbar">		
+    			<ul>
+					<li><a href="#gold">Home</a></li>
+					<li><a href="#supera">Super</a></li>
+					<li><a href="http://feeds.weatherbug.com/rss.aspx?zipcode=89142&feed=currtxt,fcsttxt&zcode=z4641">News</a></li>
+					<li><a href="#abouta">About</a></li>
+				</ul>
+			</div>
+	</div>
+
 </div><!-- END AJAX PAGE -->
 
 <!-- JavaScript under here -->
