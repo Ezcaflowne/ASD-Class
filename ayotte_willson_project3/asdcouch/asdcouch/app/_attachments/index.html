@@ -1,4 +1,4 @@
-<!doctype html>  <!-- GOLD -->
+<!doctype html>
 <html lang="en">
 <head>
 
@@ -16,7 +16,7 @@
 	
 	<!-- StyleSheets under here -->
 	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.1.1/jquery.mobile-1.1.1.min.css" />
-	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<link rel="stylesheet" type="text/css" href="main.css">
 	
 	<!-- JavaScript is normally at the end of the body, except for Modernizr which enables HTML5 elements & feature detects -->
 	<script src="modernizr.custom.min.js"></script>
@@ -39,6 +39,7 @@
 				<p><a href="#aptData" data-role="button" data-inset="true" data-ajax="true" data-icon="arrow-r" data-iconpos="right" data-theme="e">Show Apartment Data</a></p>
 				<!-- REMOVED REMOTE DATA BUTTON FOR WEEKS 2 AND 3 -->
 				<!-- <p><a href="#remoteData" data-role="button" data-inset="true" data-ajax="true" data-icon="arrow-r" data-iconpos="right" data-theme="b">AJAX</a></p> -->
+				<p><a href="#couchData" data-role="button" data-inset="true" data-ajax="true" data-icon="arrow-r" data-iconpos="right" data-theme="b">Couch Data</a></p>
 			</center>
 				<ul data-role="listview" data-inset="true" data-filter="true">
 					<li data-role="list-divider">Browse by Apartment</li>
@@ -429,7 +430,7 @@
 </div><!-- END APARTMENT DATA PAGE -->
 
 <!-- REMOVED AJAX PAGE FOR WEEKS 2 AND 3 -->
-<!------------------------------------- AJAX PAGE -------------------------------------->
+<!------------------------------------- AJAX  DATA PAGE -------------------------------------->
 <!-- <div data-role="page" id="remoteData" data-add-back-btn="true" data-theme="a">
 
 	<div data-role="header">
@@ -459,7 +460,35 @@
 			</div>
 	</div>
 
-</div><!-- END AJAX PAGE -->
+</div><!-- END AJAX DATA PAGE -->
+
+<!-------------------------------------- COUCHDB DATA PAGE -------------------------------------------->
+<div data-role="page" id="couchData" data-add-back-btn="true" data-theme="a">
+
+	<div data-role="header">
+		<h1>Couch Data</h1>
+	</div>
+
+	<div data-role="content" id="couchContent">
+    
+    <div data-role="button" id="couchJsonButton" data-inline="true" data-ajax="true" data-theme="b">View Couch Data</div>
+    	
+    <div data-role="fieldcontain" id="viewCouchData"></div>
+        
+    </div>
+
+	<div data-role="footer" data-position="fixed">
+    	<div data-role="navbar">		
+    		<ul>
+				<li><a href="#gold">Home</a></li>
+				<li><a href="#supera">Super</a></li>
+				<li><a href="http://feeds.weatherbug.com/rss.aspx?zipcode=89142&feed=currtxt,fcsttxt&zcode=z4641">News</a></li>
+				<li><a href="#abouta">About</a></li>
+			</ul>
+		</div>
+	</div>
+
+</div> <!-- END COUCHDB DATA PAGE -->
 
 <!-- JavaScript under here -->
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>

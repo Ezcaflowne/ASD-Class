@@ -17,119 +17,166 @@ $('#home').on('pageinit', function(){
 //     }
 // });
 
-$( '#remoteData' ).on('pageinit', function(){
+$( '#couchData' ).on('pageinit', function(){
+
+	 $( '#couchJsonButton' ).on( 'click', function () {
+		$('#viewCouchData').empty();
+       $.ajax( {
+           url: '_views/apt',
+           type: 'GET',
+           dataType: 'json',
+           success:function ( result ) {
+				console.log(result);
+               $.each( result.rows, function( home, apt ){
+               	console.log(apt.value.aptType);
+               	var aptType      = apt.value.aptType;
+               	var aptNum       = apt.value.aptNum;
+               	var aptSize      = apt.value.aptSize;
+               	var vacDate      = apt.value.vacDate;
+               	var rdyDate      = apt.value.rdyDate;
+               	var isWhiteLock  = apt.value.isWhiteLock;
+               	var isPower      = apt.value.isPower;
+               	var condition    = apt.value.condition;
+               	var comments     = apt.value.comments;
+                  
+					//console.log(aptType);
+                   $( ' ' + 
+					'<div class="apt">' +
+					'<p>' + aptType[0]       + " " + aptType[1] +
+					'<br>' + aptNum[0]       + " " + aptNum[1] + 
+					'<br>' + aptSize[0]      + " " + aptSize[1] + 
+					'<br>' + vacDate[0]      + " " + vacDate[1] +
+					'<br>' + rdyDate[0]      + " " + rdyDate[1] +
+					'<br>' + isWhiteLock[0]  + " " + isWhiteLock[1] +
+					'<br>' + isPower[0]      + " " + isPower[1] +
+					'<br>' + condition[0]    + " " + condition[1] +
+					'<br>' + comments[0]     + " " + comments[1] + '</p>' +
+					'</div>'
+					).appendTo( '#viewCouchData' );
+               });
+			},
+            error: function(result){
+            console.log(result, "Did not Work");
+            }
+        });
+    });
+});
+
+
+// REMOVED FOR WEEK 3
+// $( '#remoteData' ).on('pageinit', function(){
 
     // Calling data.json
-    $( '#jsonButton' ).on( 'click', function () {
-        $('#viewData').empty();
-        $.ajax( {
-            url: 'xhr/data.json',
-            type: 'GET',
-            dataType: 'json',
-            success:function ( result ) {
-                console.log(result, "It Works");
-                for ( var i = 0, len = result.apartments.length; i < len; i++ ) {
-                    var item = result.apartments[i];
-                    //console.log(item);
-                    $( ' ' + 
-                    '<div class="apartment">'       +
-                    '<p>'  + item.aptType[0]        + " " + item.aptType[1] +
-                    '<br>' + item.aptNum[0]         + " " + item.aptNum[1] + 
-                    '<br>' + item.aptSize[0]        + " " + item.aptSize[1] + 
-                    '<br>' + item.vacDate[0]        + " " + item.vacDate[1] +
-                    '<br>' + item.rdyDate[0]        + " " + item.rdyDate[1] +
-                    '<br>' + item.isWhiteLock[0]    + " " + item.isWhiteLock[1] +
-                    '<br>' + item.isPower[0]        + " " + item.isPower[1] +
-                    '<br>' + item.condition[0]      + " " + item.condition[1] +
-                    '<br>' + item.comments[0]       + " " + item.comments[1] + '</p>' +
-                    '</div>'
-                    ).appendTo( '#viewData' );
-                }
-            },
-            error: function(result){
-            console.log(result, "Did not Work");
-            }
-        });
-    });
+    // $( '#jsonButton' ).on( 'click', function () {
+    //     $('#viewData').empty();
+    //     $.ajax( {
+    //         url: 'xhr/data.json',
+    //         type: 'GET',
+    //         dataType: 'json',
+    //         success:function ( result ) {
+    //             console.log(result, "It Works");
+    //             for ( var i = 0, len = result.apartments.length; i < len; i++ ) {
+    //                 var item = result.apartments[i];
+    //                 //console.log(item);
+    //                 $( ' ' + 
+    //                 '<div class="apartment">'       +
+    //                 '<p>'  + item.aptType[0]        + " " + item.aptType[1] +
+    //                 '<br>' + item.aptNum[0]         + " " + item.aptNum[1] + 
+    //                 '<br>' + item.aptSize[0]        + " " + item.aptSize[1] + 
+    //                 '<br>' + item.vacDate[0]        + " " + item.vacDate[1] +
+    //                 '<br>' + item.rdyDate[0]        + " " + item.rdyDate[1] +
+    //                 '<br>' + item.isWhiteLock[0]    + " " + item.isWhiteLock[1] +
+    //                 '<br>' + item.isPower[0]        + " " + item.isPower[1] +
+    //                 '<br>' + item.condition[0]      + " " + item.condition[1] +
+    //                 '<br>' + item.comments[0]       + " " + item.comments[1] + '</p>' +
+    //                 '</div>'
+    //                 ).appendTo( '#viewData' );
+    //             }
+    //         },
+    //         error: function(result){
+    //         console.log(result, "Did not Work");
+    //         }
+    //     });
+    // });
     
-    // Calling data.xml
-    $( '#xmlButton' ).on( 'click', function() {
-        $('#viewData').empty();
-        $.ajax( {
-            url: 'xhr/data.xml',
-            type: 'GET',
-            dataType: 'xml',
-            success:function ( result ) {
-                console.log(result, "It Works!");
-                $(result).find('item').each(function(){
-                    var aptType     = $(this).find('aptType').text();
-                    var aptNum      = $(this).find('aptNum').text();
-                    var aptSize     = $(this).find('aptSize').text();
-                    var vacDate     = $(this).find('vacDate').text();
-                    var rdyDate     = $(this).find('rdyDate').text();
-                    var isWhiteLock = $(this).find('isWhiteLock').text();
-                    var isPower     = $(this).find('isPower').text();
-                    var condition   = $(this).find('condition').text();
-                    var comments    = $(this).find('comments').text();
-                    $(''+
-                        '<div class="xmlData">'+
-                            '<p>'+ aptType +
-                            '<br>'+ aptNum +
-                            '<br>'+ aptSize +
-                            '<br>'+ vacDate +
-                            '<br>'+ rdyDate + 
-                            '<br>'+ isWhiteLock +
-                            '<br>'+ isPower +
-                            '<br>'+ condition +
-                            '<br>'+ comments +'</p>'+
-                        '</div>'
-                    ).appendTo('#viewData');
-                });
-            },
-            error: function(result){
-            console.log(result, "Did not Work");
-            }
-        });
-    });
+//     // Calling data.xml
+//     $( '#xmlButton' ).on( 'click', function() {
+//         $('#viewData').empty();
+//         $.ajax( {
+//             url: 'xhr/data.xml',
+//             type: 'GET',
+//             dataType: 'xml',
+//             success:function ( result ) {
+//                 console.log(result, "It Works!");
+//                 $(result).find('item').each(function(){
+//                     var aptType     = $(this).find('aptType').text();
+//                     var aptNum      = $(this).find('aptNum').text();
+//                     var aptSize     = $(this).find('aptSize').text();
+//                     var vacDate     = $(this).find('vacDate').text();
+//                     var rdyDate     = $(this).find('rdyDate').text();
+//                     var isWhiteLock = $(this).find('isWhiteLock').text();
+//                     var isPower     = $(this).find('isPower').text();
+//                     var condition   = $(this).find('condition').text();
+//                     var comments    = $(this).find('comments').text();
+//                     $(''+
+//                         '<div class="xmlData">'+
+//                             '<p>'+ aptType +
+//                             '<br>'+ aptNum +
+//                             '<br>'+ aptSize +
+//                             '<br>'+ vacDate +
+//                             '<br>'+ rdyDate + 
+//                             '<br>'+ isWhiteLock +
+//                             '<br>'+ isPower +
+//                             '<br>'+ condition +
+//                             '<br>'+ comments +'</p>'+
+//                         '</div>'
+//                     ).appendTo('#viewData');
+//                 });
+//             },
+//             error: function(result){
+//             console.log(result, "Did not Work");
+//             }
+//         });
+//     });
 
-    $( '#csvButton' ).on( 'click', function() {
-        $('#viewData').empty();
-        $.ajax( {
-            url: 'xhr/data.csv',
-            type: 'GET',
-            dataType: 'text',
-            success:function ( result ) {
-                console.log( "<<<It Works>>>", result);
-                var lines = result.split("\n");
-                //console.log(lines);
-                var dataRow = lines[0];
-                var dataCol = dataRow.split(",");
-                for (var lineNum = 1; lineNum < lines.length; lineNum++) {
-                    var row = lines[lineNum];
-                    var columns = row.split(",");
-                    //console.log(columns);
-                    $(''+
-                            '<div class="csvData">'+
-                                '<p>' + dataCol[0] + " " + columns[0] +
-                                '<br>'+ dataCol[1] + " " + columns[1] +
-                                '<br>'+ dataCol[2] + " " + columns[2] +
-                                '<br>'+ dataCol[3] + " " + columns[3] +
-                                '<br>'+ dataCol[4] + " " + columns[4] +
-                                '<br>'+ dataCol[5] + " " + columns[5] +
-                                '<br>'+ dataCol[6] + " " + columns[6] +
-                                '<br>'+ dataCol[7] + " " + columns[7] +
-                                '<br>'+ dataCol[8] + " " + columns[8] + '</p>' +
-                            '</div>'
-                        ).appendTo('#viewData');
-                }
-            },
-            error: function(result){
-            console.log(result, "Did not Work");
-            }
-        });
-    });
+//     $( '#csvButton' ).on( 'click', function() {
+//         $('#viewData').empty();
+//         $.ajax( {
+//             url: 'xhr/data.csv',
+//             type: 'GET',
+//             dataType: 'text',
+//             success:function ( result ) {
+//                 console.log( "<<<It Works>>>", result);
+//                 var lines = result.split("\n");
+//                 //console.log(lines);
+//                 var dataRow = lines[0];
+//                 var dataCol = dataRow.split(",");
+//                 for (var lineNum = 1; lineNum < lines.length; lineNum++) {
+//                     var row = lines[lineNum];
+//                     var columns = row.split(",");
+//                     //console.log(columns);
+//                     $(''+
+//                             '<div class="csvData">'+
+//                                 '<p>' + dataCol[0] + " " + columns[0] +
+//                                 '<br>'+ dataCol[1] + " " + columns[1] +
+//                                 '<br>'+ dataCol[2] + " " + columns[2] +
+//                                 '<br>'+ dataCol[3] + " " + columns[3] +
+//                                 '<br>'+ dataCol[4] + " " + columns[4] +
+//                                 '<br>'+ dataCol[5] + " " + columns[5] +
+//                                 '<br>'+ dataCol[6] + " " + columns[6] +
+//                                 '<br>'+ dataCol[7] + " " + columns[7] +
+//                                 '<br>'+ dataCol[8] + " " + columns[8] + '</p>' +
+//                             '</div>'
+//                         ).appendTo('#viewData');
+//                 }
+//             },
+//             error: function(result){
+//             console.log(result, "Did not Work");
+//             }
+//         });
+//     });
 
-});
+// });
 		
 $('#addItem').on('pageinit', function(){
     delete $.validator.methods.date;
