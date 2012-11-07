@@ -22,7 +22,7 @@ $( '#couchData' ).on('pageinit', function(){
 	 $( '#couchJsonButton' ).on( 'click', function () {
 		$('#viewCouchData').empty();
        $.ajax( {
-           url: '_views/apt',
+           url: '',
            type: 'GET',
            dataType: 'json',
            success:function ( result ) {
