@@ -70,7 +70,7 @@ $( '#couchData' ).on('pageinit', function(){
     // $( '#jsonButton' ).on( 'click', function () {
     //     $('#viewData').empty();
     //     $.ajax( {
-    //         url: 'xhr/data.json',
+    //         url: 'data.json',
     //         type: 'GET',
     //         dataType: 'json',
     //         success:function ( result ) {
@@ -103,7 +103,7 @@ $( '#couchData' ).on('pageinit', function(){
 //     $( '#xmlButton' ).on( 'click', function() {
 //         $('#viewData').empty();
 //         $.ajax( {
-//             url: 'xhr/data.xml',
+//             url: 'data.xml',
 //             type: 'GET',
 //             dataType: 'xml',
 //             success:function ( result ) {
@@ -142,7 +142,7 @@ $( '#couchData' ).on('pageinit', function(){
 //     $( '#csvButton' ).on( 'click', function() {
 //         $('#viewData').empty();
 //         $.ajax( {
-//             url: 'xhr/data.csv',
+//             url: 'data.csv',
 //             type: 'GET',
 //             dataType: 'text',
 //             success:function ( result ) {
@@ -247,15 +247,15 @@ var getData = function(){
 };
 
 
-
 var getImage = function (catName, makeSubList) {
         var imageLi = $("<li>");
         makeSubList.append(imageLi);
         var newImage = $("<img>");
-        var setSrc = newImage.attr("src", "images/" + catName + ".png");
+        var setSrc = newImage.attr("src", "catName" + ".png");
         imageLi.append(newImage);
  
     };
+
 
 var editItem = function () {
        
