@@ -18,49 +18,47 @@ $('#home').on('pageinit', function(){
 // });
 
 $( '#couchData' ).on('pageinit', function(){
-
-	 $( '#couchJsonButton' ).on( 'click', function () {
-		$('#viewCouchData').empty();
        $.ajax( {
-           url: '',
-           type: 'GET',
+           url: '_view/apartments',
            dataType: 'json',
            success:function ( result ) {
-				console.log(result);
-               $.each( result.rows, function( home, apt ){
-               	console.log(apt.value.aptType);
-               	var aptType      = apt.value.aptType;
-               	var aptNum       = apt.value.aptNum;
-               	var aptSize      = apt.value.aptSize;
-               	var vacDate      = apt.value.vacDate;
-               	var rdyDate      = apt.value.rdyDate;
-               	var isWhiteLock  = apt.value.isWhiteLock;
-               	var isPower      = apt.value.isPower;
-               	var condition    = apt.value.condition;
-               	var comments     = apt.value.comments;
-                  
-					//console.log(aptType);
-                   $( ' ' + 
-					'<div class="apt">' +
-					'<p>' + aptType[0]       + " " + aptType[1] +
-					'<br>' + aptNum[0]       + " " + aptNum[1] + 
-					'<br>' + aptSize[0]      + " " + aptSize[1] + 
-					'<br>' + vacDate[0]      + " " + vacDate[1] +
-					'<br>' + rdyDate[0]      + " " + rdyDate[1] +
-					'<br>' + isWhiteLock[0]  + " " + isWhiteLock[1] +
-					'<br>' + isPower[0]      + " " + isPower[1] +
-					'<br>' + condition[0]    + " " + condition[1] +
-					'<br>' + comments[0]     + " " + comments[1] + '</p>' +
-					'</div>'
-					).appendTo( '#viewCouchData' );
-               });
+               $.each( result.rows, function( index, apartments ){
+               	var aptType      = apartments.value.aptType;
+               	var aptNum       = apartments.value.aptNum;
+               	var aptSize      = apartments.value.aptSize;
+               	var vacDate      = apartments.value.vacDate;
+               	var rdyDate      = apartments.value.rdyDate;
+               	var isWhiteLock  = apartments.value.isWhiteLock;
+               	var isPower      = apartments.value.isPower;
+               	var condition    = apartments.value.condition;
+               	var comments     = apartments.value.comments;
+               		$('#viewCouchData').append(
+                		$('<li>').append(
+                				$('<a>').attr("href", "#")
+                					.text(aptType)
+                		)
+               		);  
+                $( ' ' + 
+					'<li class="apartments">' +
+					'<p>' + aptNum + 
+					'<br>' + aptSize + 
+					'<br>' + vacDate +
+					'<br>' + rdyDate +
+					'<br>' + isWhiteLock +
+					'<br>' + isPower +
+					'<br>' + condition +
+					'<br>' + comments  + '</p>' +
+					'</li>'
+				).appendTo( '#viewCouchData' );
+               	});
+               	$('#viewCouchData').listview('refresh');
 			},
             error: function(result){
             console.log(result, "Did not Work");
             }
         });
-    });
 });
+
 
 
 // REMOVED FOR WEEK 3
