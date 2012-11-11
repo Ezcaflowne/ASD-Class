@@ -17,9 +17,10 @@ $('#home').on('pageinit', function(){
 //     }
 // });
 
-$( '#couchData' ).on('pageinit', function(){
+//NOTICE AVAILABLE DATA
+$( '#noa' ).on('pageinit', function(){
        $.ajax( {
-           url: '_view/apartments',
+           url: '_view/noa',
            dataType: 'json',
            success:function ( result ) {
                $.each( result.rows, function( index, apartments ){
@@ -32,34 +33,118 @@ $( '#couchData' ).on('pageinit', function(){
                	var isPower      = apartments.value.isPower;
                	var condition    = apartments.value.condition;
                	var comments     = apartments.value.comments;
-               		$('#viewCouchData').append(
+               		$('#viewNoa').append(
                 		$('<li>').append(
                 				$('<a>').attr("href", "#")
-                					.text(aptType)
+                					.text(aptNum)
                 		)
                		);  
                 $( ' ' + 
 					'<li class="apartments">' +
-					'<p>' + aptNum + 
-					'<br>' + aptSize + 
-					'<br>' + vacDate +
+					'<p>' + aptSize + 
+					'<br>' + vacDate + 
 					'<br>' + rdyDate +
 					'<br>' + isWhiteLock +
 					'<br>' + isPower +
 					'<br>' + condition +
-					'<br>' + comments  + '</p>' +
+					'<br>' + comments + '</p>' +
 					'</li>'
-				).appendTo( '#viewCouchData' );
+				).appendTo( '#viewNoa' );
                	});
-               	$('#viewCouchData').listview('refresh');
+               	$('#viewNoa').listview('refresh');
 			},
             error: function(result){
             console.log(result, "Did not Work");
             }
         });
 });
+//END NOTICE AVAILABLE DATA
 
+//VACANT READY DATA
+$( '#var' ).on('pageinit', function(){
+    $.ajax( {
+        url: '_view/var',
+        dataType: 'json',
+        success:function ( result ) {
+            $.each( result.rows, function( index, apartments ){
+            	var aptType      = apartments.value.aptType;
+            	var aptNum       = apartments.value.aptNum;
+            	var aptSize      = apartments.value.aptSize;
+            	var vacDate      = apartments.value.vacDate;
+            	var rdyDate      = apartments.value.rdyDate;
+            	var isWhiteLock  = apartments.value.isWhiteLock;
+            	var isPower      = apartments.value.isPower;
+            	var condition    = apartments.value.condition;
+            	var comments     = apartments.value.comments;
+            		$('#viewVar').append(
+             		$('<li>').append(
+             				$('<a>').attr("href", "#")
+             					.text(aptNum)
+             		)
+            		);  
+             $( ' ' + 
+					'<li class="apartments">' +
+					'<p>' + aptSize + 
+					'<br>' + vacDate + 
+					'<br>' + rdyDate +
+					'<br>' + isWhiteLock +
+					'<br>' + isPower +
+					'<br>' + condition +
+					'<br>' + comments + '</p>' +
+					'</li>'
+				).appendTo( '#viewVar' );
+            	});
+            	$('#viewVar').listview('refresh');
+			},
+         error: function(result){
+         console.log(result, "Did not Work");
+         }
+     });
+});
+//END VACANT READY DATA
 
+//VACANT AVAILABLE DATA
+$( '#vaa' ).on('pageinit', function(){
+    $.ajax( {
+        url: '_view/vaa',
+        dataType: 'json',
+        success:function ( result ) {
+            $.each( result.rows, function( index, apartments ){
+            	var aptType      = apartments.value.aptType;
+            	var aptNum       = apartments.value.aptNum;
+            	var aptSize      = apartments.value.aptSize;
+            	var vacDate      = apartments.value.vacDate;
+            	var rdyDate      = apartments.value.rdyDate;
+            	var isWhiteLock  = apartments.value.isWhiteLock;
+            	var isPower      = apartments.value.isPower;
+            	var condition    = apartments.value.condition;
+            	var comments     = apartments.value.comments;
+            		$('#viewVaa').append(
+             		$('<li>').append(
+             				$('<a>').attr("href", "#")
+             					.text(aptNum)
+             		)
+            		);  
+             $( ' ' + 
+					'<li class="apartments">' +
+					'<p>' + aptSize + 
+					'<br>' + vacDate + 
+					'<br>' + rdyDate +
+					'<br>' + isWhiteLock +
+					'<br>' + isPower +
+					'<br>' + condition +
+					'<br>' + comments + '</p>' +
+					'</li>'
+				).appendTo( '#viewVaa' );
+            	});
+            	$('#viewVaa').listview('refresh');
+			},
+         error: function(result){
+         console.log(result, "Did not Work");
+         }
+     });
+});
+//END VACANT AVAILABLE DATA
 
 // REMOVED FOR WEEK 3
 // $( '#remoteData' ).on('pageinit', function(){

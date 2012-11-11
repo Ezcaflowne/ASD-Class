@@ -39,7 +39,6 @@
 				<p><a href="#aptData" data-role="button" data-inset="true" data-ajax="true" data-icon="arrow-r" data-iconpos="right" data-theme="e">Show Apartment Data</a></p>
 				<!-- REMOVED REMOTE DATA BUTTON FOR WEEKS 2 AND 3 -->
 				<!-- <p><a href="#remoteData" data-role="button" data-inset="true" data-ajax="true" data-icon="arrow-r" data-iconpos="right" data-theme="b">AJAX</a></p> -->
-				<p><a href="#couchData" data-role="button" data-inset="true" data-ajax="true" data-icon="arrow-r" data-iconpos="right" data-theme="b">Couch</a></p>
 			</center>
 				<ul data-role="listview" data-inset="true" data-filter="true">
 					<li data-role="list-divider">Browse by Apartment</li>
@@ -47,11 +46,11 @@
 					<img src="VacantAvailable.png"/>
 					<h3>Vacant Available</h3>
 					</a></li>
-					<li><a href="#vra">
+					<li><a href="#var">
 					<img src="VacantRented.png" />
 					<h3>Vacant Rented</h3>
 					</a></li>
-					<li><a href="#naa" >
+					<li><a href="#noa" >
 					<img src="NoticeAvailable.png" />
 					<h3>Notice Available</h3>
 					</a></li>
@@ -80,8 +79,8 @@
 			<div data-role="navbar">
 				<ul>
 					<li><a href="#vaa" data-theme="b">Vac Available</a></li>
-					<li><a href="#vra">Vac Rented</a></li>
-					<li><a href="#naa">Note Avail</a></li>
+					<li><a href="#var">Vac Rented</a></li>
+					<li><a href="#noa">Note Avail</a></li>
 				</ul>
 			</div>
 		</div>
@@ -95,7 +94,9 @@
 				</li>
 			</ul>		
 		</div>
-
+		
+		<ul data-role="listview" id="viewVaa"></ul>
+		
 		<div data-role="footer" data-position="fixed">
 			<div data-role="navbar">
 				<ul>
@@ -112,15 +113,15 @@
 
 
 <!---------------------------------------- Vacant Rented Page -------------------------------------------->
-	<div data-role="page" id="vra" data-theme="a">
+	<div data-role="page" id="var" data-theme="a">
 
 		<div data-role="header" data-position="fixed">
 			<img id="logo" src="logo.png"/>
 			<div data-role="navbar">
 				<ul>
 					<li><a href="#vaa">Vac Available</a></li>
-					<li><a href="#vra" data-theme="b">Vac Rented</a></li>
-					<li><a href="#naa">Note Avail</a></li>
+					<li><a href="#var" data-theme="b">Vac Rented</a></li>
+					<li><a href="#noa">Note Avail</a></li>
 				</ul>
 			</div>
 		</div>
@@ -134,7 +135,9 @@
 				</li>
 			</ul>
 		</div>
-
+	
+		<ul data-role="listview" id="viewVar"></ul>
+		
 		<div data-role="footer" data-position="fixed">
 			<div data-role="navbar">
 				<ul>
@@ -150,15 +153,15 @@
 
 
 <!-------------------------------------- Notice Available Page -------------------------------------->
-	<div data-role="page" id="naa" data-theme="a">
+	<div data-role="page" id="noa" data-theme="a">
 
 		<div data-role="header" data-position="fixed">
 			<img id="logo" src="logo.png"/>
 			<div data-role="navbar">
 				<ul>
 					<li><a href="#vaa">Vac Available</a></li>
-					<li><a href="#vra">Vac Rented</a></li>
-					<li><a href="#naa" data-theme="b">Note Avail</a></li>
+					<li><a href="#var">Vac Rented</a></li>
+					<li><a href="#noa" data-theme="b">Note Avail</a></li>
 				</ul>
 			</div>
 		</div>
@@ -172,7 +175,9 @@
 				</li>
 			</ul>
 		</div>
-
+		
+		<ul data-role="listview" id="viewNoa"></ul>
+		
 		<div data-role="footer" data-position="fixed">
 			<div data-role="navbar">
 				<ul>
@@ -462,31 +467,6 @@
 
 </div><!-- END AJAX DATA PAGE -->
 
-<!-------------------------------------- COUCHDB DATA PAGE -------------------------------------------->
-<div data-role="page" id="couchData" data-add-back-btn="true" data-theme="a">
-
-	<div data-role="header">
-		<h1>Couch Data</h1>
-	</div>
-
-	<div data-role="content" id="couchContent">
-    	
-    <ul data-role="listview" id="viewCouchData"></ul>
-        
-    </div>
-
-	<div data-role="footer" data-position="fixed">
-    	<div data-role="navbar">		
-    		<ul>
-				<li><a href="#gold">Home</a></li>
-				<li><a href="#supera">Super</a></li>
-				<li><a href="http://feeds.weatherbug.com/rss.aspx?zipcode=89142&feed=currtxt,fcsttxt&zcode=z4641">News</a></li>
-				<li><a href="#abouta">About</a></li>
-			</ul>
-		</div>
-	</div>
-
-</div> <!-- END COUCHDB DATA PAGE -->
 
 <!-- JavaScript under here -->
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
