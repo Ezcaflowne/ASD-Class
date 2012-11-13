@@ -17,8 +17,17 @@ $('#home').on('pageinit', function(){
 //     }
 // });
 
+//PAGE SHOW
+$(document).on('pageshow', '#details', function(){
+
+//	Display details for a specific item
+	
+});
+//END PAGE SHOW
+
 //NOTICE AVAILABLE DATA
 $( '#noa' ).on('pageinit', function(){
+	$('#viewNoa').empty();
        $.ajax( {
            url: '_view/noa',
            dataType: 'json',
@@ -62,6 +71,7 @@ $( '#noa' ).on('pageinit', function(){
 
 //VACANT READY DATA
 $( '#var' ).on('pageinit', function(){
+	$('#viewVar').empty();
     $.ajax( {
         url: '_view/var',
         dataType: 'json',
@@ -105,7 +115,8 @@ $( '#var' ).on('pageinit', function(){
 
 //VACANT AVAILABLE DATA
 $( '#vaa' ).on('pageinit', function(){
-    $.ajax( {
+	$('#viewVaa').empty();
+	$.ajax( {
         url: '_view/vaa',
         dataType: 'json',
         success:function ( result ) {
