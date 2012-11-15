@@ -20,128 +20,94 @@ $('#home').on('pageinit', function(){
 //PAGE SHOW
 //VACANT AVAILABLE
 $('#vaa').live('pageinit', function(){
-    $.couch.db('asdweek4').view('app/vaa', {
-        success: function(result){
-            //console.log(result);
-            $('#vaaList').empty();
-            $.each( result.rows, function( index, apartments ){
-                var aptType      = apartments.value.aptType;
-                var aptNum       = apartments.value.aptNum;
-                var aptSize      = apartments.value.aptSize;
-                var vacDate      = apartments.value.vacDate;
-                var rdyDate      = apartments.value.rdyDate;
-                var isWhiteLock  = apartments.value.isWhiteLock;
-                var isPower      = apartments.value.isPower;
-                var condition    = apartments.value.condition;
-                var comments     = apartments.value.comments;
-                    $('#vaaList').append(
-                    $('<li>').append(
-                            $('<a>').attr("href", "#")
-                                .text(aptNum)
-                    )
-                    );  
-             $( ' ' + 
-                    '<li class="apartments">' +
-                    '<p>' + aptSize + 
-                    '<br>' + vacDate + 
-                    '<br>' + rdyDate +
-                    '<br>' + isWhiteLock +
-                    '<br>' + isPower +
-                    '<br>' + condition +
-                    '<br>' + comments + '</p>' +
-                    '</li>'
-                ).appendTo( '#vaaList' );
-                });
-                $('#vaaList').listview('refresh');
-        },
+    $.couch.db( "project4" ).view( "app/apartments", {
+        success: function( result ) {
+            //console.log(data);
+            $( '#vaaList' ).empty();
+            $( '<li>' ).attr( "data-role", "list-divider" )
+                        .text( "Apartment Number - Size" ).appendTo('#vaaList');
+           $.each( result.rows, function( index, apartments ){
+                    //console.log(times.value.Options);
+                    var aptType       = apartments.value.aptType;
+                    if ( aptType[1] === "Vacant Available" ) {
+                        var aptNum      = apartments.value.aptNum;
+                        var aptSize     = apartments.value.aptSize;
+                            
+                        $( '<li>' ).append(
+                            $( '<a>' )
+                                .attr( "href", "apartment.html?aptNum=" + 
+                                        aptNum[1] )
+                                .text( aptNum[1] + " - " + aptSize[1] )
+                        ).appendTo( '#vaaList' );
+                    }
+            });
+            $( '#vaaList' ).listview( 'refresh' );
+        }
     });
 });
-//END VACANT AVAILABLE
+//END VACANT AVAILABLE apartments
 
 //VACANT RENTED
 $('#var').live('pageinit', function(){
-    $.couch.db('asdweek4').view('app/var', {
-        success: function(result){
-            //console.log(result);
-            $('#varList').empty();
-            $.each( result.rows, function( index, apartments ){
-                var aptType      = apartments.value.aptType;
-                var aptNum       = apartments.value.aptNum;
-                var aptSize      = apartments.value.aptSize;
-                var vacDate      = apartments.value.vacDate;
-                var rdyDate      = apartments.value.rdyDate;
-                var isWhiteLock  = apartments.value.isWhiteLock;
-                var isPower      = apartments.value.isPower;
-                var condition    = apartments.value.condition;
-                var comments     = apartments.value.comments;
-                    $('#varList').append(
-                    $('<li>').append(
-                            $('<a>').attr("href", "#")
-                                .text(aptNum)
-                    )
-                    );  
-             $( ' ' + 
-                    '<li class="apartments">' +
-                    '<p>' + aptSize + 
-                    '<br>' + vacDate + 
-                    '<br>' + rdyDate +
-                    '<br>' + isWhiteLock +
-                    '<br>' + isPower +
-                    '<br>' + condition +
-                    '<br>' + comments + '</p>' +
-                    '</li>'
-                ).appendTo( '#varList' );
-                });
-                $('#varList').listview('refresh');
-        },
+    $.couch.db( "project4" ).view( "app/apartments", {
+        success: function( result ) {
+            //console.log(data);
+            $( '#varList' ).empty();
+            $( '<li>' ).attr( "data-role", "list-divider" )
+                        .text( "Apartment Number - Size" ).appendTo('#varList');
+           $.each( result.rows, function( index, apartments ){
+                    //console.log(times.value.Options);
+                    var aptType       = apartments.value.aptType;
+                    if ( aptType[1] === "Vacant Rented" ) {
+                        var aptNum      = apartments.value.aptNum;
+                        var aptSize     = apartments.value.aptSize;
+                            
+                        $( '<li>' ).append(
+                            $( '<a>' )
+                                .attr( "href", "apartment.html?aptNum=" + 
+                                        aptNum[1] )
+                                .text( aptNum[1] + " - " + aptSize[1] )
+                        ).appendTo( '#varList' );
+                    }
+            });
+            $( '#varList' ).listview( 'refresh' );
+        }
     });
 });
 //END VACANT RENTED
 
 //NOTICE AVAILABLE
 $('#noa').live('pageinit', function(){
-    $.couch.db('asdweek4').view('app/noa', {
-        success: function(result){
-            //console.log(result);
-            $('#noaList').empty();
-            $.each( result.rows, function( index, apartments ){
-                var aptType      = apartments.value.aptType;
-                var aptNum       = apartments.value.aptNum;
-                var aptSize      = apartments.value.aptSize;
-                var vacDate      = apartments.value.vacDate;
-                var rdyDate      = apartments.value.rdyDate;
-                var isWhiteLock  = apartments.value.isWhiteLock;
-                var isPower      = apartments.value.isPower;
-                var condition    = apartments.value.condition;
-                var comments     = apartments.value.comments;
-                    $('#noaList').append(
-                    $('<li>').append(
-                            $('<a>').attr("href", "#")
-                                .text(aptNum)
-                    )
-                    );  
-             $( ' ' + 
-                    '<li class="apartments">' +
-                    '<p>' + aptSize + 
-                    '<br>' + vacDate + 
-                    '<br>' + rdyDate +
-                    '<br>' + isWhiteLock +
-                    '<br>' + isPower +
-                    '<br>' + condition +
-                    '<br>' + comments + '</p>' +
-                    '</li>'
-                ).appendTo( '#noaList' );
-                });
-                $('#noaList').listview('refresh');
-        },
+    $.couch.db( "project4" ).view( "app/apartments", {
+        success: function( result ) {
+            //console.log(data);
+            $( '#noaList' ).empty();
+            $( '<li>' ).attr( "data-role", "list-divider" )
+                        .text( "Apartment Number - Size" ).appendTo('#noaList');
+           $.each( result.rows, function( index, apartments ){
+                    //console.log(times.value.Options);
+                    var aptType       = apartments.value.aptType;
+                    if ( aptType[1] === "Notice Available" ) {
+                        var aptNum      = apartments.value.aptNum;
+                        var aptSize     = apartments.value.aptSize;
+                            
+                        $( '<li>' ).append(
+                            $( '<a>' )
+                                .attr( "href", "apartment.html?aptNum=" + 
+                                        aptNum[1] )
+                                .text( aptNum[1] + " - " + aptSize[1] )
+                        ).appendTo( '#noaList' );
+                    }
+            });
+            $( '#noaList' ).listview( 'refresh' );
+        }
     });
 });
 //END NOTICE AVAILABLE
-
 var urlVars = function(){
-    var urlData     = $($.mobile.activePage).results('url');
+    var urlData     = $($.mobile.activePage).data('url');
     var urlParts    = urlData.split('?');
-    var urlPairs    = urlParts[1].split('&');
+    var urlPairs    = urlParts[1].split('=');
     var urlValues   = {};
     for (var pair in urlPairs) {
         var keyValue    = urlPairs[pair].split('=');
@@ -149,17 +115,19 @@ var urlVars = function(){
         var value       = decodeURIComponet(keyValue[1]);
         urlValues[key]  = value;
     }
+    console.log(urlValue);
     return urlValues;
 };
 
-$('#apartments').live('pageshow', function(){
+$('#apartment').live('pageshow', function(){
     var key = urlVars()['aptNum'];
     //console.log(key)
-    $('#apartmentList').empty();
-    $.couch.db('asdweek4').view('app/var', {
-        //console.log(result);
+    $('#aptList').empty();
+    $.couch.db('project4').view('app/apartments', {
         success: function(result){
+            //console.log(result);
             $.each(result.rows, function(index, apartments){
+                //console.log(apartments.value.aptType)
                 var aptNum       = apartments.value.aptNum;
                 if ( aptNum[1] === key) {
                     var aptType      = apartments.value.aptType;
@@ -181,10 +149,10 @@ $('#apartments').live('pageshow', function(){
                                 _id: id,
                                 _rev: rev
                             };
-                            $.couch.db('asdweek4').removeDoc(doc, {
-                                success: function(result) {
-                                    console.log(result);
-                                    $.mobile.changePage($('gold'));
+                            $.couch.db('project4').removeDoc(doc, {
+                                success: function(data) {
+                                    console.log(data);
+                                    $.mobile.changePage($('#index'));
                                     alert('Apartment Deleted');
                                 },
                                 error: function(status) {
@@ -196,7 +164,7 @@ $('#apartments').live('pageshow', function(){
                             alert('Apartment not deleted!');
                         }
                     });
-                    var apartments = {
+                    var apartment = {
                         _id: id,
                         _rev: rev,
                         aptType: aptType,
@@ -210,10 +178,10 @@ $('#apartments').live('pageshow', function(){
                         comments: comments
                     }
                     $('#editApt').on('click', function(){
-                        editApt( apartments );
+                        editApt( apartment );
                     });
                     $(' ' +
-                        '<div class="apartments">' +
+                        '<div class="apartment">' +
                         '<p>'  + aptType[0]         + " " + aptType[1] +
                         '<br>' + aptNum[0]          + " " + aptNum[1] + 
                         '<br>' + aptSize[0]         + " " + aptSize[1] + 
@@ -224,7 +192,7 @@ $('#apartments').live('pageshow', function(){
                         '<br>' + condition[0]       + " " + condition[1] +
                         '<br>' + comments[0]        + " " + comments[1] + '</p>' +
                         '<div>'
-                        ).appendTo('#apartmentList');
+                        ).appendTo('#aptList');
                 }
             });
         }
@@ -233,122 +201,6 @@ $('#apartments').live('pageshow', function(){
 
 //END PAGE SHOW
 
-
-
-// REMOVED FOR WEEK 3
-// $( '#remoteData' ).on('pageinit', function(){
-
-    // Calling data.json
-    // $( '#jsonButton' ).on( 'click', function () {
-    //     $('#viewData').empty();
-    //     $.ajax( {
-    //         url: 'data.json',
-    //         type: 'GET',
-    //         dataType: 'json',
-    //         success:function ( result ) {
-    //             console.log(result, "It Works");
-    //             for ( var i = 0, len = result.apartments.length; i < len; i++ ) {
-    //                 var item = result.apartments[i];
-    //                 //console.log(item);
-    //                 $( ' ' + 
-    //                 '<div class="apartment">'       +
-    //                 '<p>'  + item.aptType[0]        + " " + item.aptType[1] +
-    //                 '<br>' + item.aptNum[0]         + " " + item.aptNum[1] + 
-    //                 '<br>' + item.aptSize[0]        + " " + item.aptSize[1] + 
-    //                 '<br>' + item.vacDate[0]        + " " + item.vacDate[1] +
-    //                 '<br>' + item.rdyDate[0]        + " " + item.rdyDate[1] +
-    //                 '<br>' + item.isWhiteLock[0]    + " " + item.isWhiteLock[1] +
-    //                 '<br>' + item.isPower[0]        + " " + item.isPower[1] +
-    //                 '<br>' + item.condition[0]      + " " + item.condition[1] +
-    //                 '<br>' + item.comments[0]       + " " + item.comments[1] + '</p>' +
-    //                 '</div>'
-    //                 ).appendTo( '#viewData' );
-    //             }
-    //         },
-    //         error: function(result){
-    //         console.log(result, "Did not Work");
-    //         }
-    //     });
-    // });
-    
-//     // Calling data.xml
-//     $( '#xmlButton' ).on( 'click', function() {
-//         $('#viewData').empty();
-//         $.ajax( {
-//             url: 'data.xml',
-//             type: 'GET',
-//             dataType: 'xml',
-//             success:function ( result ) {
-//                 console.log(result, "It Works!");
-//                 $(result).find('item').each(function(){
-//                     var aptType     = $(this).find('aptType').text();
-//                     var aptNum      = $(this).find('aptNum').text();
-//                     var aptSize     = $(this).find('aptSize').text();
-//                     var vacDate     = $(this).find('vacDate').text();
-//                     var rdyDate     = $(this).find('rdyDate').text();
-//                     var isWhiteLock = $(this).find('isWhiteLock').text();
-//                     var isPower     = $(this).find('isPower').text();
-//                     var condition   = $(this).find('condition').text();
-//                     var comments    = $(this).find('comments').text();
-//                     $(''+
-//                         '<div class="xmlData">'+
-//                             '<p>'+ aptType +
-//                             '<br>'+ aptNum +
-//                             '<br>'+ aptSize +
-//                             '<br>'+ vacDate +
-//                             '<br>'+ rdyDate + 
-//                             '<br>'+ isWhiteLock +
-//                             '<br>'+ isPower +
-//                             '<br>'+ condition +
-//                             '<br>'+ comments +'</p>'+
-//                         '</div>'
-//                     ).appendTo('#viewData');
-//                 });
-//             },
-//             error: function(result){
-//             console.log(result, "Did not Work");
-//             }
-//         });
-//     });
-
-//     $( '#csvButton' ).on( 'click', function() {
-//         $('#viewData').empty();
-//         $.ajax( {
-//             url: 'data.csv',
-//             type: 'GET',
-//             dataType: 'text',
-//             success:function ( result ) {
-//                 console.log( "<<<It Works>>>", result);
-//                 var lines = result.split("\n");
-//                 //console.log(lines);
-//                 var dataRow = lines[0];
-//                 var dataCol = dataRow.split(",");
-//                 for (var lineNum = 1; lineNum < lines.length; lineNum++) {
-//                     var row = lines[lineNum];
-//                     var columns = row.split(",");
-//                     //console.log(columns);
-//                     $(''+
-//                             '<div class="csvData">'+
-//                                 '<p>' + dataCol[0] + " " + columns[0] +
-//                                 '<br>'+ dataCol[1] + " " + columns[1] +
-//                                 '<br>'+ dataCol[2] + " " + columns[2] +
-//                                 '<br>'+ dataCol[3] + " " + columns[3] +
-//                                 '<br>'+ dataCol[4] + " " + columns[4] +
-//                                 '<br>'+ dataCol[5] + " " + columns[5] +
-//                                 '<br>'+ dataCol[6] + " " + columns[6] +
-//                                 '<br>'+ dataCol[7] + " " + columns[7] +
-//                                 '<br>'+ dataCol[8] + " " + columns[8] + '</p>' +
-//                             '</div>'
-//                         ).appendTo('#viewData');
-//                 }
-//             },
-//             error: function(result){
-//             console.log(result, "Did not Work");
-//             }
-//         });
-//     });
-
-// });
 		
 $('#addItem').on('pageinit', function(){
     delete $.validator.methods.date;
@@ -375,6 +227,7 @@ $('#addItem').on('pageinit', function(){
         });
 
     //any other code needed for addItem page goes here
+
 
 });
 
@@ -408,7 +261,7 @@ var getData = function(){
         var makeSubList = document.createElement('ul');
         makeLi.appendChild(makeSubList);
         for (var n in obj){
-            var makeSubList     = document.createElement('li');
+            var makeSubLi     = document.createElement('li');
             makeSubList.appendChild(makeSubLi);
             var optSubText      = obj[n][0] + " " + obj[n][1];
             makeSubLi.innerHTML = optSubText;
@@ -442,86 +295,13 @@ var getData = function(){
 
 };
 
-
-var getImage = function (catName, makeSubList) {
-        var imageLi = $("<li>");
-        makeSubList.append(imageLi);
-        var newImage = $("<img>");
-        var setSrc = newImage.attr("src", "catName" + ".png");
-        imageLi.append(newImage);
- 
-    };
-
-
-var editItem = function (apartments) {
-       
-        $.mobile.changePage($('#addItem'));
-        item = apartments;
-        console.log(apartments);
-
-        $('#aptType').val(item.aptType[1]);
-        $('#aptNum').val(item.aptNum[1]);
-        $('#aptSize').val(item.aptSize[1]);
-        $('#vacDate').val(item.vacDate[1]);
-        $('#rdyDate').val(item.rdyDate[1]);
-        $('#isWhiteLock').val(item.isWhiteLock[1]);
-        $('#isPower').val(item.isPower[1]);
-        $('#condition').val(item.condition[1]);
-        $('#comments').val(item.comments[1]);
-
-        $('submit').on('click', storeData(item));
-};
-
-var makeItemLinks = function (key, linksLi) {
-
-    // add edit single item link
-        var editLink        = document.createElement('n');
-        editLink.href       = '#';
-        editLink.key        = key;
-        var editText        = 'Edit Apartment';
-        editLink.addEventListener ('click', editItem);
-        editLink.innerHTML  = editText;
-        linksLi.appendChild(editLink); 
-        
-        // $('<n>')
-        //                 .attr('data-role','button')
-        //                 .html('Edit Apartment')
-        //                 .css('padding-top','10px')
-        //                 .attr('this',key)
-        //                 .on('click', editItem)
-        //                 editLink.key = key;
-        //                 editLink.appendTo(linksLi);
-        // ;
-
-
-    // Add delete single item Link
-        var deleteLink      = document.createElement('n');
-        deleteLink.href     = '#';
-        deleteLink.key      = key;
-        var deleteText      = 'Delete Apartment';
-        deleteLink.addEventListener('click',deleteItem);
-        deleteLink.innerHTML = deleteText;
-        linksLi.appendChild(deleteLink);
-
-        // $('<li>')
-        //                 .attr('data-role','button')
-        //                 .text('Delete Apartment')
-        //                 .css('padding-top','10px')
-        //                 .attr('key', key)
-        //                 .on('click', deleteItem)
-        //                 deleteLink.key = key;
-        //                 deleteLink.appendTo(linksLi);
-        // ;
-};      
-
-
 var storeData = function (key){
     var id;
     if (key){
         console.log('key:' + key);
-        $.couch.db('asdweek4').openDoc(key._id,{
-            success: function(result) {
-                console.log(result);
+        $.couch.db('project4').openDoc(key._id,{
+            success: function(data) {
+                console.log(data);
             },
             error: function(status){
                 console.log(status);
@@ -542,23 +322,23 @@ var storeData = function (key){
             doc.condition       = ['Condition:',            $('#condition').val()];
             doc.comments        = ['Comments:',             $('#comments').val()];
 
-        console.log(doc);
-        $.couch.db('#asdweek4').saveDoc(doc, {
-            success: function(result) {
-                console.log(result);
-                $.mobile.changePage($('#index'));
-                alert('Apartment Updated!');
-            },
-            error: function(status) {
-                console.log(status);
-            }
-        });
+            console.log(doc);
+            $.couch.db('project4').saveDoc(doc, {
+                success: function(data) {
+                    console.log(data);
+                    $.mobile.changePage($('#gold'));
+                    alert('Apartment Updated!');
+                },
+                error: function(status) {
+                    console.log(status);
+                }
+            });
         });
                 return false;
     }
     else {
         var id      = Math.floor( Math.random() * 10000001);
-        var item            ={};
+        var item            = {};
 
         item.aptType        = ['Apartment Type:',       $('#aptType').val()];
         item.aptNum         = ['Apartment Number:',     $('#aptNum').val()];
@@ -572,7 +352,7 @@ var storeData = function (key){
     //item._id          =[item.aptType[1]];
 
     var doc = {
-                _id: item.aptType[1]
+                _id: item.aptNum[1]
     };
     doc.aptType         = ['Apartment Type:',       $('#aptType').val()];
     doc.aptNum          = ['Apartment Number:',     $('#aptNum').val()];
@@ -584,9 +364,9 @@ var storeData = function (key){
     doc.condition       = ['Condition:',            $('#condition').val()];
     doc.comments        = ['Comments:',             $('#comments').val()];
 
-    $.couch.db('asdweek4').saveDoc(doc, {
-        success: function(result) {
-            console.log(result);
+    $.couch.db('project4').saveDoc(doc, {
+        success: function(data) {
+            console.log(data);
         },
         error: function(status) {
             console.log(status);
@@ -628,14 +408,78 @@ var clearLocal = function(){
     }
 };
 
-    // REMOVED FOR WEEK TWO
+var windowReload = function(){
+        $.mobile.changePage($('#gold'),{transition:"left"});
+        return false;
+};
+
+var editItem = function ( apartment ) {
+       
+        $.mobile.changePage($('#addItem'));
+        item = apartment;
+        console.log(apartment);
+
+        $('#aptType').val(item.aptType[1]);
+        $('#aptNum').val(item.aptNum[1]);
+        $('#aptSize').val(item.aptSize[1]);
+        $('#vacDate').val(item.vacDate[1]);
+        $('#rdyDate').val(item.rdyDate[1]);
+        $('#isWhiteLock').val(item.isWhiteLock[1]);
+        $('#isPower').val(item.isPower[1]);
+        $('#condition').val(item.condition[1]);
+        $('#comments').val(item.comments[1]);
+
+        $('submit').on('click', storeData(item));
+};
+
+
+function makeItemLinks (key, linksLi) {
+
+    // add edit single item link
+        var editLink        = document.createElement('n');
+        editLink.href       = '#';
+        editLink.key        = key;
+        var editText        = 'Edit Apartment';
+        editLink.addEventListener ('click', editItem);
+        editLink.innerHTML  = editText;
+        linksLi.appendChild(editLink); 
+        
+        // $('<n>')
+        //                 .attr('data-role','button')
+        //                 .html('Edit Apartment')
+        //                 .css('padding-top','10px')
+        //                 .attr('this',key)
+        //                 .on('click', editItem)
+        //                 editLink.key = key;
+        //                 editLink.appendTo(linksLi);
+        // ;
+        var breakTag         = document.createElement( 'br' );
+        linksLi.appendChild( breakTag );
+
+    // Add delete single item Link
+        var deleteLink      = document.createElement('n');
+        deleteLink.href     = '#';
+        deleteLink.key      = key;
+        var deleteText      = 'Delete Apartment';
+        deleteLink.addEventListener('click',deleteItem);
+        deleteLink.innerHTML = deleteText;
+        linksLi.appendChild(deleteLink);
+
+        // $('<li>')
+        //                 .attr('data-role','button')
+        //                 .text('Delete Apartment')
+        //                 .css('padding-top','10px')
+        //                 .attr('key', key)
+        //                 .on('click', deleteItem)
+        //                 deleteLink.key = key;
+        //                 deleteLink.appendTo(linksLi);
+        // ;
+};      
+
     $( '#displayLink' ).on( 'click', getData );
-
     $( '#clearLink'   ).on( 'click', clearLocal );
-    $( '#addNew'      ).on( 'click', '#addItem' );//.css('display','none');  FIX THIS SO IT TAKES ME BACK TO FORMPAGE
-
-    $('#apartmentFormErrors').css('display','none')
-    
+    $( '#addNew'      ).on( 'click', windowReload );
+    $('#apartmentFormErrors').css('display','none');    
 // $('<li><a href="#">New Link</a></li>').appendTo('#nav');
 // $.mobile.changePage('#searchResult');
 

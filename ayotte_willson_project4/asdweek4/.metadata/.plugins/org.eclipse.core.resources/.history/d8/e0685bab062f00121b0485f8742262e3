@@ -1,0 +1,16 @@
+function(doc) {
+  if (doc._id.substring(0, 16) === "Notice Available") {
+    emit(doc._id.substr(16), {
+    	"aptType"		: doc.aptType,
+    	"aptNum"		: "Apartment Number: " 	+ doc.aptNum,
+    	"aptSize"		: "Apartment Size: " 	+ doc.aptSize,
+    	"vacDate"		: "Vacate Date: " 			+ doc.vacDate,
+    	"rdyDate"		: "Ready Date: " 			+ doc.rdyDate,
+    	"isWhiteLock"	: "Whitelock: " 		+ doc.isWhiteLock,
+    	"isPower"		: "Power: " 			+ doc.isPower,
+    	"condition"		: "Condition: " 		+ doc.condition,
+    	"comments"		: "Comments: " 			+ doc.comments,
+    	"rev" 			: doc._rev
+    });
+  }
+};
