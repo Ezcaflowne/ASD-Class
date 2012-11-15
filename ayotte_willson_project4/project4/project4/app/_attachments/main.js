@@ -107,15 +107,15 @@ $('#noa').live('pageinit', function(){
 var urlVars = function(){
     var urlData     = $($.mobile.activePage).data('url');
     var urlParts    = urlData.split('?');
-    var urlPairs    = urlParts[1].split('=');
+    var urlPairs    = urlParts[1].split('&');
     var urlValues   = {};
     for (var pair in urlPairs) {
         var keyValue    = urlPairs[pair].split('=');
-        var key         = decodeURIComponet(keyValue[0]);
-        var value       = decodeURIComponet(keyValue[1]);
+        var key         = decodeURIComponent(keyValue[0]);
+        var value       = decodeURIComponent(keyValue[1]);
         urlValues[key]  = value;
     }
-    console.log(urlValue);
+    console.log(urlValues);
     return urlValues;
 };
 
@@ -152,7 +152,7 @@ $('#apartment').live('pageshow', function(){
                             $.couch.db('project4').removeDoc(doc, {
                                 success: function(data) {
                                     console.log(data);
-                                    $.mobile.changePage($('#index'));
+                                    $.mobile.changePage($('#gold'));
                                     alert('Apartment Deleted');
                                 },
                                 error: function(status) {
@@ -178,10 +178,10 @@ $('#apartment').live('pageshow', function(){
                         comments: comments
                     }
                     $('#editApt').on('click', function(){
-                        editApt( apartment );
+                        editItem( apartment );
                     });
                     $(' ' +
-                        '<div class="apartment">' +
+                        '<div class="apartments">' +
                         '<p>'  + aptType[0]         + " " + aptType[1] +
                         '<br>' + aptNum[0]          + " " + aptNum[1] + 
                         '<br>' + aptSize[0]         + " " + aptSize[1] + 
@@ -373,7 +373,7 @@ var storeData = function (key){
         }
     });
     localStorage.setItem( id, JSON.stringify(item));
-    alert('Apartment Added');
+    // alert('Apartment Added');
     }
 }; 
 
