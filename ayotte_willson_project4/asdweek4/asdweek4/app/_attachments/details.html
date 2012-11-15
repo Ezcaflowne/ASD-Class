@@ -24,20 +24,26 @@
 </head>
 <body>
 
-	<div data-role="page" id="details" data-theme="a">
+	<div data-role="page" id="apartments" data-theme="a">
 
 		<div data-role="header">
 			<img id=logo width="100%" src="logo.png">
 		</div>
-
-
+		
+		<div data-role"content">
+			<ul id="apartmentList">
+				<div data-role="button" id="editApt" data-inline="true">Edit Apartment</div>
+				<div data-role="button" id="deleteApt" data-line="true">Delete Apartment</div>
+			</ul>
+		</div>
+		
 		<div data-role="footer" data-position="fixed">
 			<div data-role="navbar">
 				<ul>
-					<li><a href="index.html">Home</a></li>
-					<li><a href="#supera">Super</a></li>
+					<li><a href="index.html" class="ui-btn-active" data-ajax="false">Home</a></li>
+					<li><a href="#supera" class="ui-btn-active" data-ajax="false">Super</a></li>
 					<li><a href="http://feeds.weatherbug.com/rss.aspx?zipcode=89142&feed=currtxt,fcsttxt&zcode=z4641">News</a></li>
-					<li><a href="#abouta">About</a></li>
+					<li><a href="#abouta" class="ui-btn-active" data-ajax="false">About</a></li>
 				</ul>
 			</div>
 		</div>
@@ -53,6 +59,7 @@
 	<script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
 	<!--<script src="http://code.jquery.com/mobile/1.1.1/jquery.mobile-1.1.1.min.js"></script>
 	<script type="text/javascript" src="jquery.validate.min.js"></script>
+	<script type="text/javascript" src="jquery.couch.js"
 	<script type="text/javascript" src="main.js"></script>
 	<script type="text/javascript" src="JSON.js"></script> <!-- Remove this for week two -->
 </body>
